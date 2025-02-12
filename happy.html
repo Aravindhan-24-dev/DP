@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dhana! 🎉</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('dhana.jpeg'); /* Replace with the actual image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            margin: 10px 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .wish-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #ff4500, #ff1493);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 20, 147, 0.5);
+        }
+
+        .wish-btn:hover {
+            background: linear-gradient(45deg, #ff1493, #ff6347);
+            transform: scale(1.05);
+        }
+
+        /* Confetti falling from top */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            top: -20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .star {
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Objects shooting from left and right */
+        .side-confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 50%;
+            opacity: 0.8;
+            animation: shootToCenter linear infinite;
+        }
+
+        @keyframes shootToCenter {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                top: 50%;
+                left: 50%;
+                opacity: 0;
+                transform: scale(1.5) rotate(720deg);
+            }
+        }
+
+        /* Pop-up message */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -55%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="popup" class="popup">🎉 Happy Birthday, Dhana! 🎊<br>The highlight of 2024 was our incredible trip to Gavi, and I’m so grateful to have met you there. Ending the year with such beautiful memories makes it even more special!
+</div>
+
+
+    <div class="content">
+        <h1>Happy Birthday Dhana! 🎉</h1>
+        <h2>29 Years of Amazing Adventures!</h2>
+        <p>May your day be as wonderful as the places you'll explore and the stories you'll read.</p>
+        <p>Wishing you a year filled with happiness, love, and incredible new journeys!</p>
+
+        <button class="wish-btn" onclick="startCelebration()">Click for a Surprise! 🎁</button>
+
+        <div class="footer">Enjoy every moment of your special day! 💖</div>
+    </div>
+
+
+    <script>
+        function startCelebration() {
+            document.getElementById("popup").style.display = "block";
+
+            for (let i = 0; i < 70; i++) {
+                let confetti = document.createElement("div");
+                confetti.classList.add("confetti");
+
+                let shapes = ["", "circle", "star"];
+                let shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape) confetti.classList.add(shape);
+
+                document.body.appendChild(confetti);
+
+                confetti.style.left = Math.random() * window.innerWidth + "px";
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+
+            for (let i = 0; i < 20; i++) {
+                let sideConfetti = document.createElement("div");
+                sideConfetti.classList.add("side-confetti");
+
+                let side = Math.random() > 0.5 ? "left" : "right";
+                sideConfetti.style[side] = "-20px";
+                sideConfetti.style.top = Math.random() * 100 + "%";
+                sideConfetti.style.backgroundColor = getRandomColor();
+                sideConfetti.style.animationDuration = Math.random() * 2 + 1 + "s";
+
+                document.body.appendChild(sideConfetti);
+
+                setTimeout(() => sideConfetti.remove(), 4000);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ["#ff4500", "#ff6347", "#ff8c00", "#ffd700", "#ff1493", "#00ff7f", "#1e90ff", "#9370db", "#ff69b4", "#ff00ff"];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+
+</body>
+</html>
+
